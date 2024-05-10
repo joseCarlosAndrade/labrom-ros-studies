@@ -1,0 +1,8 @@
+prefix=/home/jc_deckel13/labrom_ws/devel
+
+Name: simpleps
+Description: Description of simpleps
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
