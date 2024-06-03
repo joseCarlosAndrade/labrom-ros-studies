@@ -64,4 +64,31 @@ Se tudo foi realizado corretamente, vamos ober a resposta:
     [ INFO] [1715347450.069858095]: Resposta: 24
 ```
 
+## Instalalando catkin tools
+
+Para usar `catkin build`, devemos instalar os pacotes separadamente:
+
+```bash
+    sudo apt install ros-noetic-catkin
+    sudo apt install python3-catkin-tools
+    sudo apt install python3-osrf-pycommon
+```
+
+## Curso ETH Zurich
+
+Dependências adicionais:
+
+```bash
+    sudo apt-get install ros-noetic-hector-gazebo-plugins
+    # sudo apt install python3-catkin-tools
+
+    sudo apt-get install ros-noetic-velodyne-description
+    sudo apt-get install -y ros-noetic-twist-mux
+    sudo apt-get install -y ros-noetic-robot-localization
+    sudo apt-get install -y ros-noetic-pointcloud-to-laserscan
+    sudo apt-get install -y ros-noetic-velodyne-simulator 
+    sudo apt-get install -y ros-noetic-velodyne-description
+
+```
+
 Por: José Carlos Andrade do Nascimento

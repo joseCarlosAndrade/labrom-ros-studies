@@ -1,8 +1,1 @@
-prefix=/home/jc_deckel13/labrom_ws/devel
-
-Name: simpleps
-Description: Description of simpleps
-Version: 0.0.0
-Cflags: -I/home/jc_deckel13/labrom_ws/devel/include
-Libs: -L${prefix}/lib 
-Requires: 
+/home/jc_deckel13/labrom_ws/devel/.private/simpleps/lib/pkgconfig/simpleps.pc

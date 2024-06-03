@@ -1,4 +1,1 @@
-# generated from genmsg/cmake/pkg-msg-paths.cmake.develspace.in
-
-set(simpleps_MSG_INCLUDE_DIRS "")
-set(simpleps_MSG_DEPENDENCIES std_msgs)
+/home/jc_deckel13/labrom_ws/devel/.private/simpleps/share/simpleps/cmake/simpleps-msg-paths.cmake
