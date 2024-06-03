@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+
+    <!-- launching robot -->
+    <include file="$(find smb_gazebo)/launch/smb_gazebo.launch">
+    <!-- big_map_summer_school -->
+        <arg name="world" value="big_map_summer_school"/>
+        <arg name="laser_enabled" value="true"/>   
+    </include>
+
+    <node name="my_scan_listener" pkg="smb_highlevel_controller" type="scan_listener" output="screen" >
+        <rosparam command="load"
+            file="$(find smb_highlevel_controller)/config/smb_config.yaml" />
+    </node>
+</launch>
