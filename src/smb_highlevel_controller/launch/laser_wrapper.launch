@@ -11,7 +11,7 @@
         <arg name="laser_scan_max_height" value="1.0"/>
     </include>
 
-    <node name="my_scan_listener" pkg="smb_highlevel_controller" type="scan_listener" output="screen" >
+    <node name="my_scan_listener" pkg="smb_highlevel_controller" type="scan_listener_wrapper" output="screen" >
         <rosparam command="load"
             file="$(find smb_highlevel_controller)/config/smb_config.yaml" />
     </node>

@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   sensor_msgs
+  geometry_msgs
 )
 
 
@@ -39,7 +40,12 @@ catkin_package(
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
+  include
+  include/smb_highlevel_controller # this has to be here
 )
 
 add_executable(scan_listener src/scan_listener.cpp)
 target_link_libraries(scan_listener ${catkin_LIBRARIES})
+
+add_executable(scan_listener_wrapper src/scan_listener_with_wrapper.cpp src/LaserScan.cpp)
+target_link_libraries(scan_listener_wrapper ${catkin_LIBRARIES})

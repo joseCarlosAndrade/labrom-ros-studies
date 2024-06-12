@@ -1,3 +1,7 @@
 topic:
   name: /scan
   queue: 100
+
+laser_controller:
+  k_p_linear: 0.1  
+  k_p_angular: 8
