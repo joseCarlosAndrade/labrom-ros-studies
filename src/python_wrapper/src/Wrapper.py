@@ -22,10 +22,16 @@ class Wrapper:
     # todo: does this need to be static?
     wrapper_node = None
     
-    def __init__(self, node=None):
+    def __init__(self, node=None, node_name=""):
         if node == None:
             # initialize a ros node here
-            Wrapper.wrapper_node = rospy.init_node("wrapper_default_node", anonymous=True)
+
+            chosen_name = "wrapper_default_node"
+
+            if node_name != "":
+                chosen_name = node_name
+
+            Wrapper.wrapper_node = rospy.init_node(chosen_name, anonymous=True)
             rospy.logwarn("No Node provided, init Wrapper default node")
 
         # maps to ros functionality
@@ -71,6 +77,12 @@ class Wrapper:
         return True
 
     def initSubscriber(self, name : str):
+        """Actually subscribes in the topic of the subscriber named `name`. `name` is not the
+        topic string, but the given name in the wrapper subscriber creation.
+
+        Args:
+            name (str): topic name that was given when created (not the topic address)
+        """
         try:
             sub = self.wrapper_subscribers[name]
 
@@ -78,10 +90,18 @@ class Wrapper:
             return True
         
         except Exception as err:
+            rospy.logerr("Could not init subscriber of name ", name)
             rospy.logerr(err)
             return False
 
     def publishMessage(self, name : str, message) :
+        """Publish ros message in topic of name `name`. Warning! `name` is not the 
+        topic string, but the given name in the wrapper publish creation
+
+        Args:
+            name (str): topic name that was given when created (not the topic address)
+            message (any): message to be published 
+        """
         try: 
             pub = self.wrapper_publishers[name]
 
@@ -93,8 +113,8 @@ class Wrapper:
             rospy.loginfo(message)
 
         except Exception as err :
+            rospy.logerr("Could not publish message on topic of name ", name)
             rospy.logerr(err)
-            rospy.logerr("euta")
         
 
     def spin(self):
