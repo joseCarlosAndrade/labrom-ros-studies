@@ -23,7 +23,7 @@ class Wrapper:
     wrapper_node = None
     
     def __init__(self, node=None, node_name=""):
-        if node == None:
+        if node == None and Wrapper.wrapper_node == None:
             # initialize a ros node here
 
             chosen_name = "wrapper_default_node"
@@ -32,12 +32,18 @@ class Wrapper:
                 chosen_name = node_name
 
             Wrapper.wrapper_node = rospy.init_node(chosen_name, anonymous=True)
-            rospy.logwarn("No Node provided, init Wrapper default node")
+            rospy.logwarn("No Node provided, initializing Wrapper default node")
+
+        elif Wrapper.wrapper_node != None:
+            rospy.loginfo("Using the already initalized node")
+
 
         # maps to ros functionality
         self.wrapper_subscribers : dict[str, Subscriber] = {}
         self.wrapper_publishers : dict[str, Publisher] = {}
         self.wrapper_services = {}  
+
+        self.__debug_mode = False
 
 
     def addSubscriber(self, subscriber : Subscriber) -> bool: 
@@ -110,12 +116,22 @@ class Wrapper:
             
             # rospy.loginfo("Publishing message '", message, "' on topic: ", pub.topic)
             pub.pub.publish(message)
-            rospy.loginfo(message)
+            
+            if self.__debug_mode:
+                rospy.loginfo("PUBLISHING:")
+                rospy.loginfo(message)
 
         except Exception as err :
             rospy.logerr("Could not publish message on topic of name ", name)
             rospy.logerr(err)
-        
+    
+    def switch_debug_on(self):
+        rospy.loginfo("DEBUG MODE ON")
+        self.__debug_mode = True
+
+    def switch_debug_off(self):
+        rospy.loginfo("DEBUG MODE OFF")
+        self.__debug_mode = False
 
     def spin(self):
         rospy.spin()
